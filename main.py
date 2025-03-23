@@ -135,8 +135,18 @@ def get_satellite_position(satellite, observer):
     azimuth_angle = int(np.interp(az.degrees, [0, 360], [0, 180]))
     altitude_angle = int(np.interp(altitude_degrees, [0, 90], [0, 180]))
     
-    if is_visible and altitude_angle == 0 and altitude_degrees > 0:
-        altitude_angle = max(1, int(altitude_degrees * 2))
+    # Enhanced altitude fix for very low altitude angles
+    if is_visible:
+        if altitude_degrees < 2.0:
+            # Apply special amplification for very low altitudes (below 2.0 degrees)
+            # Ensure a minimum of 5 degrees servo angle for better visibility
+            altitude_angle = max(5, int(altitude_degrees * 5))
+        elif altitude_degrees < 5.0:
+            # For low altitudes between 2.0-5.0 degrees, apply proportional amplification
+            altitude_angle = max(altitude_angle, int(altitude_degrees * 2))
+        # For zero altitude angle but visible position, ensure a minimum value
+        elif altitude_angle == 0 and altitude_degrees > 0:
+            altitude_angle = max(1, int(altitude_degrees * 2))
     
     return {
         'azimuth_angle': azimuth_angle,
