@@ -1,0 +1,7 @@
+pyserial
+skyfield
+numpy 
+
+
+
+
