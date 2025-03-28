@@ -1,5 +1,4 @@
 cache
 run_env.txt
 stations.txt
-*.png
 __pycache__
