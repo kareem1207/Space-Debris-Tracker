@@ -8,8 +8,7 @@ class DebrisTracker:
     def __init__(self):
         """Initialize the debris tracker."""
         self.ts = load.timescale()
-        self.location = wgs84.latlon(28.4089, -80.6044)  # Cape Canaveral coordinates
-        
+        self.location = wgs84.latlon(28.4089, -80.6044)  
     def calculate_positions(self, debris_dict: Dict[str, EarthSatellite]) -> Dict[str, dict]:
         """Calculate current positions for debris objects."""
         current_time = self.ts.now()
@@ -17,12 +16,10 @@ class DebrisTracker:
         
         for name, satellite in debris_dict.items():
             try:
-                # Calculate position
                 difference = satellite - self.location
                 topocentric = difference.at(current_time)
                 alt, az, distance = topocentric.altaz()
                 
-                # Store position data
                 position_data = {
                     'altitude': alt.degrees,
                     'azimuth': az.degrees,
@@ -30,7 +27,6 @@ class DebrisTracker:
                     'visible': alt.degrees > 0
                 }
                 
-                # Only include if object is above horizon
                 if position_data['visible']:
                     visible_objects[name] = position_data
                     

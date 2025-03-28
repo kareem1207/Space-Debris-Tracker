@@ -17,7 +17,7 @@ class HardwareController:
         """Connect to the Arduino."""
         try:
             self.ser = serial.Serial(self.port, self.baud_rate, timeout=1)
-            time.sleep(2)  # Wait for Arduino to initialize
+            time.sleep(2)  
             print(f"Successfully connected to Arduino on {self.port}")
             return True
         except serial.SerialException:
@@ -40,7 +40,6 @@ class HardwareController:
             print("LCD initialization skipped in non-port mode.")
 
     def update_lcd(self, azimuth, altitude, visible):
-        """Update the LCD display with tracking information."""
         if not self.no_port_mode and self.ser:
             try:
                 visibility = "Visible" if visible else "Not visible"
@@ -52,7 +51,6 @@ class HardwareController:
                 self.no_port_mode = True
                 return False
         else:
-            # Fallback in non-port mode: print to console
             print(f"LCD: Az={azimuth}, Alt={altitude}, {'Visible' if visible else 'Not visible'}")
             return True
 
@@ -68,12 +66,10 @@ class HardwareController:
                 self.no_port_mode = True
                 return False
         else:
-            # Fallback in non-port mode: print to console
             print(f"Servo: Az={azimuth}, Alt={altitude}")
             return True
 
     def close(self):
-        """Close the serial connection."""
         if not self.no_port_mode and self.ser:
             try:
                 self.ser.close()
