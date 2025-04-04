@@ -1,20 +1,14 @@
-"""
-Hardware controller for space debris tracking.
-Handles Arduino connection, LCD display, and servo control.
-"""
 import time
 import serial
 
 class HardwareController:
     def __init__(self, port="COM9", baud_rate=9600):
-        """Initialize the hardware controller with specified serial port and baud rate."""
         self.port = port
         self.baud_rate = baud_rate
         self.ser = None
         self.no_port_mode = False
 
     def connect(self):
-        """Connect to the Arduino."""
         try:
             self.ser = serial.Serial(self.port, self.baud_rate, timeout=1)
             time.sleep(2)  
@@ -26,7 +20,6 @@ class HardwareController:
             return False
 
     def initialize_lcd(self):
-        """Initialize the LCD display."""
         if not self.no_port_mode and self.ser:
             try:
                 lcd_init_cmd = "LCD_INIT\n"
@@ -55,7 +48,6 @@ class HardwareController:
             return True
 
     def move_servos(self, azimuth, altitude):
-        """Send servo movement commands to Arduino."""
         if not self.no_port_mode and self.ser:
             try:
                 command = f"SERVO,{azimuth},{altitude}\n"

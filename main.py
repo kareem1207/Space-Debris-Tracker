@@ -8,7 +8,7 @@ import os
 def main():
     data_manager = DataManager()
     tracker = DebrisTracker()
-    hardware = HardwareController()
+    hardware = HardwareController(port="COM5", baud_rate=9600)
     ui = DebrisTrackerUI()
 
     print("\nLoading debris data...")

@@ -1,6 +1,3 @@
-"""
-Data manager for handling TLE files and debris data.
-"""
 import os
 import glob
 from skyfield.api import EarthSatellite, load

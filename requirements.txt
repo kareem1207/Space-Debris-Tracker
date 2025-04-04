@@ -1,6 +1,7 @@
-skyfield>=1.46.0
 requests>=2.31.0
 pyserial
 skyfield
 numpy 
-
+packaging
+dateutil
+matplotlib

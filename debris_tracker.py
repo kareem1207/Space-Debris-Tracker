@@ -1,16 +1,11 @@
-"""
-Debris tracker for calculating positions of space debris.
-"""
 from typing import Dict
 from skyfield.api import EarthSatellite, load, wgs84
 
 class DebrisTracker:
     def __init__(self):
-        """Initialize the debris tracker."""
         self.ts = load.timescale()
         self.location = wgs84.latlon(28.4089, -80.6044)  
     def calculate_positions(self, debris_dict: Dict[str, EarthSatellite]) -> Dict[str, dict]:
-        """Calculate current positions for debris objects."""
         current_time = self.ts.now()
         visible_objects = {}
         
