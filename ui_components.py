@@ -1,6 +1,3 @@
-"""
-UI components for space debris tracking application.
-"""
 import os
 from matplotlib import pyplot as plt
 import numpy as np
@@ -60,7 +57,6 @@ class DebrisTrackerUI:
                 self.tracking_data[key] = self.tracking_data[key][-max_points:]
 
     def plot_tracking_data(self):
-        """Generate plots from the collected tracking data."""
         if not self.tracking_data['timestamps']:
             return
             
