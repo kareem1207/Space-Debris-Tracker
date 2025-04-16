@@ -59,7 +59,6 @@ def main():
                         )
                         
                         hardware.move_servos(data['azimuth'], data['altitude'])
-                        # hardware.update_lcd(data['azimuth'], data['altitude'], True)
                         
                         found_visible = True
                         break  
@@ -69,7 +68,6 @@ def main():
             
             if not found_visible:
                 ui.display_tracking_info("No objects", 0, 0, 0, False,loc)
-                # hardware.update_lcd(0, 0, False)
             
             current_time = time.time()
             if current_time - last_sky_map_time >= sky_map_interval and ui.tracking_data['timestamps']:

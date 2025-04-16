@@ -30,7 +30,7 @@ class HardwareController:
         except serial.SerialException:
             print(f"Error: Could not connect to Arduino on {self.port}. Entering non-port mode.")
             self.no_port_mode = True
-            self.location=[17.389801,78.321151]
+            self.location=[17.389801,78.321151] # This is non port mode location you can change it to your desired location (only change if you don't have a gps module)
         finally:
             return self.location
 

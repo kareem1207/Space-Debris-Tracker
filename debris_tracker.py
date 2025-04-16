@@ -1,5 +1,4 @@
-from typing import Dict
-from skyfield.api import EarthSatellite, load, wgs84
+from skyfield.api import load, wgs84
 
 class DebrisTracker:
     def __init__(self,loc):

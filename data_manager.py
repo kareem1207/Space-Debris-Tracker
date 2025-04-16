@@ -1,7 +1,6 @@
 import os
 import glob
 from skyfield.api import EarthSatellite, load
-from typing import Dict
 
 class DataManager:
     def __init__(self, tle_cache_dir='tle_cache'):
