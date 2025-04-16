@@ -10,7 +10,7 @@ class DataManager:
         self.ts = load.timescale()
         print(f"Using TLE cache directory: {self.tle_cache_dir}")
 
-    def load_tle_file(self, filepath: str) -> Dict[str, EarthSatellite]:
+    def load_tle_file(self, filepath):
         satellites = {}
         try:
             print(f"Loading TLE file: {filepath}")
@@ -40,7 +40,7 @@ class DataManager:
         
         return satellites
 
-    def load_all_debris(self) -> Dict[str, Dict[str, EarthSatellite]]:
+    def load_all_debris(self):
         all_debris = {}
         tle_pattern = os.path.join(self.tle_cache_dir, "*.tle")
         tle_files = glob.glob(tle_pattern)

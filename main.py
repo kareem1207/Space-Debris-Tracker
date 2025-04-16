@@ -7,7 +7,6 @@ import os
 
 def main():
     data_manager = DataManager()
-    tracker = DebrisTracker()
     hardware = HardwareController(port="COM5", baud_rate=9600)
     ui = DebrisTrackerUI()
 
@@ -32,7 +31,12 @@ def main():
     
     print("Starting tracking in 3 seconds...")
     time.sleep(3)
-    hardware.connect()
+    loc = hardware.connect()
+    if loc[0]==0 and loc[1]==0:
+        print("Gps module failed to send the data")
+        return
+    tracker = DebrisTracker(loc)
+
     
     try:
         last_sky_map_time = time.time()
@@ -50,11 +54,12 @@ def main():
                             data['altitude'],
                             data['azimuth'],
                             data['distance'],
-                            data['visible']
+                            data['visible'],
+                            loc
                         )
                         
                         hardware.move_servos(data['azimuth'], data['altitude'])
-                        hardware.update_lcd(data['azimuth'], data['altitude'], True)
+                        # hardware.update_lcd(data['azimuth'], data['altitude'], True)
                         
                         found_visible = True
                         break  
@@ -63,8 +68,8 @@ def main():
                         break
             
             if not found_visible:
-                ui.display_tracking_info("No objects", 0, 0, 0, False)
-                hardware.update_lcd(0, 0, False)
+                ui.display_tracking_info("No objects", 0, 0, 0, False,loc)
+                # hardware.update_lcd(0, 0, False)
             
             current_time = time.time()
             if current_time - last_sky_map_time >= sky_map_interval and ui.tracking_data['timestamps']:

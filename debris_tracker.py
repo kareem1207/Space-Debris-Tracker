@@ -2,10 +2,10 @@ from typing import Dict
 from skyfield.api import EarthSatellite, load, wgs84
 
 class DebrisTracker:
-    def __init__(self):
+    def __init__(self,loc):
         self.ts = load.timescale()
-        self.location = wgs84.latlon(28.4089, -80.6044)  
-    def calculate_positions(self, debris_dict: Dict[str, EarthSatellite]) -> Dict[str, dict]:
+        self.location = wgs84.latlon(loc[0],loc[1])  
+    def calculate_positions(self, debris_dict) :
         current_time = self.ts.now()
         visible_objects = {}
         

@@ -21,7 +21,7 @@ class DebrisTrackerUI:
     def clear_terminal(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         
-    def display_tracking_info(self, name, altitude, azimuth, distance, visible):
+    def display_tracking_info(self, name, altitude, azimuth, distance, visible,loc):
         self.clear_terminal()
         
         visibility_status = "VISIBLE" if visible else "BELOW HORIZON"
@@ -32,6 +32,8 @@ class DebrisTrackerUI:
         print(f"║ Object:    {name[:45]}".ljust(57) + "║")
         print(f"║ Altitude:  {altitude:3.1f}°".ljust(57) + "║")
         print(f"║ Azimuth:   {azimuth:3.1f}°".ljust(57) + "║")
+        print(f"║ Your loc:   {loc[0]}°".ljust(57) + "     ║")
+        print(f"║ Your deg:   {loc[1]}°".ljust(57) + "     ║")
         print(f"║ Distance:  {distance:.1f} km".ljust(57) + "║")
         print(f"║ Status:    {visibility_status}".ljust(57) + "║")
         print("╚═════════════════════════════════════════════════════╝")
