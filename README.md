@@ -44,10 +44,6 @@ python main.py
 
 ![Hardware Setup Image](./Hardware1.jpg)
 
-![Hardware Setup Image](./Hardware2.jpg)
-
-![Hardware Setup Image](./Hardware3.jpg)
-
 ### Output
 
 ![Output Image](./output.jpg)
