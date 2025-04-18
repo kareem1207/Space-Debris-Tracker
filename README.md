@@ -36,7 +36,7 @@ python main.py
 ## Contributions
 
 - Fork the project and follow the Installation steps.
-- Contributions are open any contribution towards the progress of project is appriciated.
+- Contributions are open any contribution towards the progress of project is appreciated.
 
 ### Output and hardware setup images
 
