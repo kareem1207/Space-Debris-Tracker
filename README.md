@@ -80,3 +80,16 @@ python main.py
 ![Graphical Representation](./output-graph1.jpg)
 ![Graphical Representation](./output-graph2.jpg)
 ![Graphical Representation](./output-graph3.jpg)
+
+### Carbon foot print
+
+This is the carbon footprint of the project. The values are calculated based on the energy consumption of the hardware and the carbon intensity of the electricity used.
+We used CodeCarbon to calculate the carbon footprint of the project. The values are based on the energy consumption of the hardware and the carbon intensity of the electricity used.
+
+You can open emissions_dashboard.html file to see the carbon footprint of the project.
+You can also see the carbon footprint in the images below.
+
+### Carbon Footprint Images
+
+![Carbon Footprint](./emission1.png)
+![Carbon Footprint](./emission2.png)

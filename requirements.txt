@@ -5,3 +5,4 @@ numpy
 packaging
 dateutil
 matplotlib
+codecarbon

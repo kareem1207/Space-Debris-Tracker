@@ -4,8 +4,20 @@ from debris_tracker import DebrisTracker
 from hardware_controller import HardwareController
 from ui_components import DebrisTrackerUI
 import os
+from codecarbon import EmissionsTracker
 
 def main():
+    tracker_output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'emissions')
+    os.makedirs(tracker_output_dir, exist_ok=True)
+    emissions_tracker = EmissionsTracker(
+        project_name="Space Debris Tracker",
+        output_dir=tracker_output_dir,
+        log_level="error"
+    )
+    
+    emissions_tracker.start()
+    print("\nCarbon emissions tracking started.")
+    
     data_manager = DataManager()
     hardware = HardwareController(port="COM5", baud_rate=9600)
     ui = DebrisTrackerUI()
@@ -17,6 +29,8 @@ def main():
         print("\nNo debris data found in TLE cache directory.")
         print(f"Please ensure TLE files are present in: {data_manager.tle_cache_dir}")
         print("Expected files: high_risk_debris.tle, iridium_debris.tle, recent_debris.tle")
+        emissions_tracker.stop()
+        print(f"Carbon emissions data saved to: {tracker_output_dir}")
         return
 
     print("\nLoaded debris data summary:")
@@ -89,6 +103,10 @@ def main():
             
     finally:
         hardware.close()
+        emissions = emissions_tracker.stop()
+        print(f"Carbon emissions tracking stopped.")
+        print(f"Total emissions: {emissions:.6f} kg CO2eq")
+        print(f"Carbon emissions data saved to: {tracker_output_dir}")
         print("Tracking system shutdown complete")
 
 if __name__ == "__main__":
