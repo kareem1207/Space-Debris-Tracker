@@ -32,8 +32,12 @@ def main():
     print("Starting tracking in 3 seconds...")
     time.sleep(3)
     loc = hardware.connect()
-    if loc[0]==0 and loc[1]==0:
-        print("Gps module failed to send the data")
+    try:
+        if loc[0]==0 and loc[1]==0:
+            raise Exception("Gps module failed to send the data")
+    except Exception as e:
+        print(f"Found an error: {e}")
+        print("Please check the GPS module connection and try again.")
         return
     tracker = DebrisTracker(loc)
 

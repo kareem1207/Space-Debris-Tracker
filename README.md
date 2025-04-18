@@ -19,6 +19,33 @@ This repository contains a Python script that tracks space debris using the TLE 
 
 - Arduino Uno
 - GPS Module (e.g., Neo-6M GPS Module)
+- Servo Motor x2
+- Jumper Wires
+- Breadboard
+- Uno to USB cable for connecting Arduino to the computer
+
+## Hardware Connections
+
+### Connect the GPS module to the Arduino Uno using the following connections
+
+- GPS TX pin to Arduino Digital pin 4
+- GPS RX pin to Arduino Digital pin 3
+- GPS VCC pin to Arduino 5V
+- GPS GND pin to Arduino GND
+  
+### Connect the servo motor to the Arduino Uno using the following connections
+
+#### Servo motor 1 connection
+
+- Servo motor signal(Orange/Yellow) pin to Arduino Digital pin 9
+- Servo motor VCC(red) pin to Arduino 5V
+- Servo motor GND(Brown/Black) pin to Arduino GND
+
+#### Servo motor 2 connection
+
+- Servo motor signal(Orange/Yellow) pin to Arduino Digital pin 10
+- Servo motor VCC(red) pin to Arduino 5V
+- Servo motor GND(Brown/Black) pin to Arduino GND
 
 ## Installation
 
@@ -47,3 +74,9 @@ python main.py
 ### Output
 
 ![Output Image](./output.jpg)
+
+### Graphical representation of the data
+
+![Graphical Representation](./output-graph1.jpg)
+![Graphical Representation](./output-graph2.jpg)
+![Graphical Representation](./output-graph3.jpg)
