@@ -12,102 +12,214 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f7ff;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e3eeff 100%);
             color: #333;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         header {
-            background-color: #2c3e50;
+            background: linear-gradient(120deg, #2c3e50 0%, #4ca1af 100%);
             color: white;
-            padding: 20px 0;
+            padding: 25px 0;
             text-align: center;
-            border-radius: 8px 8px 0 0;
+            border-radius: 12px 12px 0 0;
             margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(30deg);
+            animation: shimmer 4s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
         }
 
         header h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         header p {
-            margin: 5px 0 0;
-            opacity: 0.8;
+            margin: 8px 0 0;
+            opacity: 0.9;
+            font-size: 16px;
         }
 
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 35px;
         }
 
         .stat-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover::after {
+            transform: scaleX(1);
         }
 
         .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #3498db;
-            margin: 10px 0;
+            font-size: 34px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 15px 0;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
         }
 
         .stat-label {
-            font-size: 14px;
-            color: #7f8c8d;
+            font-size: 16px;
+            color: #34495e;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .stat-unit {
-            font-size: 14px;
-            color: #95a5a6;
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: 500;
+            margin-top: 6px;
+            position: relative;
         }
 
         .chart-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 35px;
         }
 
         @media (max-width: 768px) {
             .chart-container {
                 grid-template-columns: 1fr;
             }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
         }
 
         .chart-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
 
         .chart-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
             color: #2c3e50;
             text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .chart-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 3px;
         }
 
         canvas {
-            max-height: 300px;
+            max-height: 320px;
+            margin: 0 auto;
+            transition: filter 0.3s ease;
+        }
+
+        .chart-card:hover canvas {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
         }
 
         .full-width {
@@ -115,79 +227,221 @@
         }
 
         .equivalence-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+            margin-bottom: 35px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equivalence-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, transparent 40%, rgba(46, 204, 113, 0.1) 100%);
+            border-radius: 0 0 0 100%;
+            z-index: 0;
         }
 
         .equivalence-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
             color: #2c3e50;
             text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .equivalence-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            border-radius: 3px;
         }
 
         .equivalence-items {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .equivalence-item {
             text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: rgba(248, 249, 250, 0.8);
             flex: 1;
             min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .equivalence-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            background-color: #f8f9fa;
         }
 
         .equivalence-value {
-            font-size: 18px;
-            font-weight: bold;
-            color: #27ae60;
-            margin-bottom: 5px;
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .equivalence-item div:last-child {
+            font-size: 15px;
+            color: #34495e;
+            font-weight: 500;
         }
 
         .raw-data {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
             overflow-x: auto;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .raw-data h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 22px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .raw-data h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, rgba(52, 152, 219, 0.5));
+            border-radius: 3px;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
         th,
         td {
-            padding: 12px 15px;
+            padding: 14px 18px;
             text-align: left;
-            border-bottom: 1px solid #e0e0e0;
         }
 
         th {
-            background-color: #f1f1f1;
+            background-color: #f7f9fc;
             font-weight: 600;
+            color: #2c3e50;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-bottom: 2px solid #e0e0e0;
         }
 
-        tr:hover {
+        td {
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
             background-color: #f9f9f9;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: #7f8c8d;
-            font-size: 14px;
-            margin-top: 30px;
+            font-size: 15px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f5f7ff;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #2980b9, #2c3e50);
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .loading .stat-card,
+        .loading .chart-card,
+        .loading .equivalence-card {
+            animation: pulse 1.5s infinite ease-in-out;
         }
     </style>
 </head>
@@ -282,79 +536,92 @@
     </div>
 
     <script>
+        const parseNumeric = (value) => parseFloat(value) || 0;
+        const formatValue = (value, decimals = 4) => parseNumeric(value).toFixed(decimals);
+        const updateElement = (id, value, unit = null) => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = value;
+                if (unit && element.nextElementSibling) {
+                    element.nextElementSibling.textContent = unit;
+                }
+            }
+        };
+
         async function fetchCSVData() {
             try {
-                const response = await fetch('emissions/emissions.csv');
-                const data = await response.text();
+                const timestamp = new Date().getTime();
+                const response = await fetch(`emissions/emissions.csv?t=${timestamp}`);
 
-                const rows = data.split('\n');
-                if (rows.length < 2) {
-                    console.error('CSV file has insufficient data');
-                    return null;
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
-                const headers = rows[0].split(',');
-                const values = rows[1].split(',');
+                const data = await response.text();
+
+                const rows = data.split('\n')
+                    .filter(row => row.trim() !== '' && !row.trim().startsWith('//'));
+
+                if (rows.length < 2) {
+                    throw new Error('CSV file has insufficient data');
+                }
+
+                const headers = rows[0].split(',').map(h => h.trim());
+
+                const lastRowIndex = rows.length - 1;
+                const values = rows[lastRowIndex].split(',').map(v => v.trim());
+
+                if (headers.length !== values.length) {
+                    throw new Error(`CSV header and value count mismatch (Headers: ${headers.length}, Values: ${values.length})`);
+                }
+
+                console.log(`Found ${rows.length - 1} emission records, using latest record`);
 
                 const emissionsData = {};
-                headers.forEach((header, index) => {
-                    emissionsData[header] = values[index];
-                });
+                const allRecords = [];
 
+                for (let i = 1; i < rows.length; i++) {
+                    const rowValues = rows[i].split(',').map(v => v.trim());
+                    if (rowValues.length === headers.length) {
+                        const record = {};
+                        headers.forEach((header, index) => {
+                            record[header] = rowValues[index];
+                        });
+                        allRecords.push(record);
+
+                        if (i === lastRowIndex) {
+                            headers.forEach((header, index) => {
+                                emissionsData[header] = rowValues[index];
+                            });
+                        }
+                    }
+                }
+
+                emissionsData.allRecords = allRecords;
                 return emissionsData;
+
             } catch (error) {
                 console.error('Error fetching CSV data:', error);
                 document.body.innerHTML = `<div class="container" style="text-align: center; padding: 50px;">
                     <h1>Error Loading Data</h1>
                     <p>Could not load emissions data. Please ensure the CSV file is available at 'emissions/emissions.csv'.</p>
                     <p>Error details: ${error.message}</p>
+                    <button onclick="location.reload()" style="padding: 8px 16px; margin-top: 20px; cursor: pointer;">
+                        Retry
+                    </button>
                 </div>`;
                 return null;
             }
         }
 
-        async function initDashboard() {
-            const emissionsData = await fetchCSVData();
-            if (!emissionsData) return;
-            const timestamp = new Date(emissionsData.timestamp).toLocaleString();
-            document.getElementById('last-updated').textContent = `Last updated: ${timestamp}`;
-
-            document.getElementById('total-emissions').textContent =
-                (parseFloat(emissionsData.emissions) * 1000).toFixed(4);
-            document.getElementById('total-emissions').nextElementSibling.textContent = 'g CO₂eq';
-
-            document.getElementById('duration').textContent =
-                parseFloat(emissionsData.duration).toFixed(2);
-
-            document.getElementById('emissions-rate').textContent =
-                (parseFloat(emissionsData.emissions_rate) * 1000).toFixed(4);
-            document.getElementById('emissions-rate').nextElementSibling.textContent = 'g CO₂eq/s';
-
-            document.getElementById('energy-consumed').textContent =
-                (parseFloat(emissionsData.energy_consumed) * 1000).toFixed(4);
-            document.getElementById('energy-consumed').nextElementSibling.textContent = 'Wh';
-
-            const emissionsKg = parseFloat(emissionsData.emissions);
-            const carMeters = (emissionsKg / 0.000120).toFixed(2);
-            const smartphoneHours = (emissionsKg / 0.000009).toFixed(2);
-            const treeSeconds = (emissionsKg / 0.000000021).toFixed(2);
-
-            document.getElementById('car-distance').textContent = carMeters;
-            document.getElementById('smartphone-hours').textContent = smartphoneHours;
-            document.getElementById('trees').textContent = treeSeconds;
-
-            const energyChartCtx = document.getElementById('energy-chart').getContext('2d');
-            new Chart(energyChartCtx, {
-                type: 'bar',
+        function createChart(ctx, type, labels, data, options = {}) {
+            return new Chart(ctx, {
+                type,
                 data: {
-                    labels: ['CPU', 'RAM', 'GPU'],
+                    labels,
                     datasets: [{
-                        label: 'Energy (mWh)',
-                        data: [
-                            parseFloat(emissionsData.cpu_energy) * 1000,
-                            parseFloat(emissionsData.ram_energy) * 1000,
-                            parseFloat(emissionsData.gpu_energy) * 1000
-                        ],
+                        label: options.label || '',
+                        data,
                         backgroundColor: [
                             'rgba(54, 162, 235, 0.7)',
                             'rgba(75, 192, 192, 0.7)',
@@ -371,126 +638,34 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Energy (mWh)'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return `${context.parsed.y.toFixed(4)} mWh`;
-                                }
-                            }
-                        }
-                    }
+                    ...options
                 }
             });
-
-            const distributionChartCtx = document.getElementById('distribution-chart').getContext('2d');
-            new Chart(distributionChartCtx, {
-                type: 'pie',
-                data: {
-                    labels: ['CPU', 'RAM', 'GPU'],
-                    datasets: [{
-                        data: [
-                            parseFloat(emissionsData.cpu_energy),
-                            parseFloat(emissionsData.ram_energy),
-                            parseFloat(emissionsData.gpu_energy)
-                        ],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(255, 99, 132, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 99, 132, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const value = context.raw;
-                                    const percentage = ((value / parseFloat(emissionsData.energy_consumed)) * 100).toFixed(1);
-                                    return `${context.label}: ${percentage}% (${(value * 1000).toFixed(4)} mWh)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            const powerChartCtx = document.getElementById('power-chart').getContext('2d');
-            new Chart(powerChartCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['CPU Power', 'RAM Power', 'GPU Power'],
-                    datasets: [{
-                        label: 'Power (W)',
-                        data: [
-                            parseFloat(emissionsData.cpu_power),
-                            parseFloat(emissionsData.ram_power),
-                            parseFloat(emissionsData.gpu_power)
-                        ],
-                        backgroundColor: [
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(255, 99, 132, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 99, 132, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Power (W)'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-
+        }
+        function calculateEquivalents(emissionsKg) {
+            return {
+                carMeters: (emissionsKg / 0.000120).toFixed(2),
+                smartphoneHours: (emissionsKg / 0.000009).toFixed(2),
+                treeSeconds: (emissionsKg / 0.000000021).toFixed(2)
+            };
+        }
+        function createDataTable(emissionsData) {
             const tableBody = document.getElementById('emissions-table').querySelector('tbody');
-            Object.entries(emissionsData).forEach(([key, value]) => {
+            tableBody.innerHTML = '';
+
+            const keysToShow = Object.keys(emissionsData).filter(key => key !== 'allRecords');
+
+            keysToShow.forEach(key => {
                 const row = document.createElement('tr');
 
                 const keyCell = document.createElement('td');
-                keyCell.textContent = key.replace(/_/g, ' ').split(' ').map(word =>
-                    word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                keyCell.textContent = key.replace(/_/g, ' ')
+                    .split(' ')
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
 
                 const valueCell = document.createElement('td');
-                valueCell.textContent = value;
+                valueCell.textContent = emissionsData[key];
 
                 row.appendChild(keyCell);
                 row.appendChild(valueCell);
@@ -498,7 +673,115 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', initDashboard);
+        async function initDashboard() {
+            const emissionsData = await fetchCSVData();
+            if (!emissionsData) return;
+
+            const timestamp = new Date(emissionsData.timestamp).toLocaleString();
+            updateElement('last-updated', `Last updated: ${timestamp}`);
+
+            updateElement('total-emissions', formatValue(emissionsData.emissions * 1000), 'g CO₂eq');
+            updateElement('duration', formatValue(emissionsData.duration, 2), 'seconds');
+            updateElement('emissions-rate', formatValue(emissionsData.emissions_rate * 1000), 'g CO₂eq/s');
+            updateElement('energy-consumed', formatValue(emissionsData.energy_consumed * 1000), 'Wh');
+
+            const emissionsKg = parseNumeric(emissionsData.emissions);
+            const equivalents = calculateEquivalents(emissionsKg);
+            updateElement('car-distance', equivalents.carMeters);
+            updateElement('smartphone-hours', equivalents.smartphoneHours);
+            updateElement('trees', equivalents.treeSeconds);
+
+            const energyChartCtx = document.getElementById('energy-chart').getContext('2d');
+            createChart(
+                energyChartCtx,
+                'bar',
+                ['CPU', 'RAM', 'GPU'],
+                [
+                    parseNumeric(emissionsData.cpu_energy) * 1000,
+                    parseNumeric(emissionsData.ram_energy) * 1000,
+                    parseNumeric(emissionsData.gpu_energy) * 1000
+                ],
+                {
+                    label: 'Energy (mWh)',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Energy (mWh)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: context => `${formatValue(context.parsed.y)} mWh`
+                            }
+                        }
+                    }
+                }
+            );
+
+            const distributionChartCtx = document.getElementById('distribution-chart').getContext('2d');
+            createChart(
+                distributionChartCtx,
+                'pie',
+                ['CPU', 'RAM', 'GPU'],
+                [
+                    parseNumeric(emissionsData.cpu_energy),
+                    parseNumeric(emissionsData.ram_energy),
+                    parseNumeric(emissionsData.gpu_energy)
+                ],
+                {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: context => {
+                                    const value = context.raw;
+                                    const percentage = ((value / parseNumeric(emissionsData.energy_consumed)) * 100).toFixed(1);
+                                    return `${context.label}: ${percentage}% (${formatValue(value * 1000)} mWh)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            );
+
+            const powerChartCtx = document.getElementById('power-chart').getContext('2d');
+            createChart(
+                powerChartCtx,
+                'bar',
+                ['CPU Power', 'RAM Power', 'GPU Power'],
+                [
+                    parseNumeric(emissionsData.cpu_power),
+                    parseNumeric(emissionsData.ram_power),
+                    parseNumeric(emissionsData.gpu_power)
+                ],
+                {
+                    label: 'Power (W)',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Power (W)' }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            );
+
+            createDataTable(emissionsData);
+        }
+
+        function setupAutoRefresh() {
+            const REFRESH_INTERVAL = 5 * 60 * 1000;
+            setInterval(() => {
+                console.log('Auto-refreshing dashboard data...');
+                initDashboard();
+            }, REFRESH_INTERVAL);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initDashboard();
+            setupAutoRefresh();
+        });
     </script>
 </body>
 
