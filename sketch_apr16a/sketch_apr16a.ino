@@ -2,7 +2,7 @@
 #include <TinyGPS++.h>
 #include <Servo.h>
 
-SoftwareSerial gpsSerial(4, 3); // RX, TX for GPS
+SoftwareSerial gpsSerial(4, 3);  // RX, TX for GPS
 TinyGPSPlus gps;
 
 Servo servoAzimuth;
